@@ -1,0 +1,106 @@
+.App {
+  text-align: center;
+}
+
+header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: black;
+  background-color: #fff;
+  height: 10vh;
+  width: 100vw;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #fff;
+  height: 90vh;
+  width: 100vw;
+}
+
+.sudoku-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(9, 7vh);
+  grid-template-rows: repeat(9, 7vh);
+  gap: 0;
+  background-color: black;
+  width: fit-content;
+  border: 3px solid #000000; /* bordure principale plus épaisse et foncée */
+}
+
+.cell {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid #bdc3c7; /* bordure fine entre cases */
+  transition: background-color 0.2s ease;
+}
+
+.cell.empty {
+  color: gray;
+}
+
+.cell.highlight {
+  background-color: #d6eaf8; /* couleur highlight douce */
+}
+
+/* Bordures épaisses pour les blocs 3x3 */
+.cell:nth-child(3n) {
+  border-right: 2px solid #34495e;
+}
+
+.cell:nth-child(n + 19):nth-child(-n + 27),
+.cell:nth-child(n + 46):nth-child(-n + 54) {
+  border-bottom: 2px solid #000000;
+}
+
+/* Pour la grille, on doit cibler colonnes et lignes individuellement, 
+   mais comme c'est une grille, on utilise des classes conditionnelles en React.
+   Si besoin, on peut ajouter ça en JS pour plus de précision. */
+
+.slecteurdechiffre {
+  display: flex;
+  justify-content: space-evenly;
+  width: 64vh;
+}
+
+.chiffre {
+  background-color: transparent;
+  font-size: 3vw;
+  border: none;
+  color: rgb(46, 67, 255);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.chiffre:hover {
+  color: rgb(20, 40, 200);
+}
+
+.cell.wrong {
+  background-color: #f88;
+}
+
+
+@media (max-width: 768px) {
+  .sudoku-grid {
+    width: 90vw;
+    grid-template-columns: repeat(9, 10vw);
+    grid-template-rows: repeat(9, 10vw);
+  }
+
+  .cell {
+    font-size: 5vw;
+    border-width: 0.5vw;
+  }
+}
